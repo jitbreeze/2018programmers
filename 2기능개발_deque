@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+#include <deque>
+#include <cmath>
+using namespace std;
+
+vector<int> solution(vector<int> progresses, vector<int> speeds) {
+    vector<int> days;
+    vector<int> answer;
+    deque<int> deque;
+    for(int i=0;i<progresses.size();i++){
+        days.push_back(ceil((100.0-progresses[i])/speeds[i]));
+    }
+    
+    for(int i=0;i<days.size();i++){
+        if(deque.empty()) deque.push_front(days[i]);
+        else{
+            if(days[i]<=deque.at(0)) deque.push_back(days[i]);
+            else{
+                answer.push_back(deque.size());
+                deque.clear();
+                deque.push_front(days[i]);
+            }
+        }
+    }
+    answer.push_back(deque.size());
+    return answer;
+}
