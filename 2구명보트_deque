@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+#include <deque>
+#include <algorithm>
+using namespace std;
+
+int solution(vector<int> people, int limit) {
+    int answer = 0;
+    deque<int> d;
+    for(int i=0;i<people.size();i++){
+        d.push_back(people[i]);
+    }
+    sort(d.begin(),d.end());
+    while(!d.empty()){
+        if(d.size()==1) {answer++; break;}
+        else{
+                if(d.front()+d.back()<=limit){
+                    answer++;
+                    d.pop_back(); d.pop_front();
+                }   
+                else{
+                    answer++;
+                    d.pop_back();
+                }
+            }
+    }
+    return answer;
+}
