@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+using namespace std;
+
+string solution(string number, int k) {
+    string answer = "";
+    int erase=0;
+    int length=number.length();
+    while(true){
+        for(int i=0;i<number.length();i++){
+            if(i==number.length()-1){
+                number=number.substr(0,length-k);
+                erase=k;
+                break;
+            }
+            else if(number[i]<number[i+1]){
+                    number.erase(number.begin()+i);
+                    erase++;
+                    break;
+            } 
+        }
+        if(erase==k) {
+            answer=number;
+            break;
+        }
+    }
+    return answer;
+}
