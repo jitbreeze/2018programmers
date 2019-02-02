@@ -1,0 +1,37 @@
+#include <string>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int solution(vector<int> priorities, int location) {
+    int answer = 0;
+    queue<int> q;
+    priority_queue<int,vector<int>> pq;
+    for(int i=0;i<priorities.size();i++){
+        pq.push(priorities[i]);
+        q.push(priorities[i]);
+    }
+    
+    while(true){
+     if(q.front()==pq.top()){
+         pq.pop();
+         if(location==0){
+             answer++;
+             break;
+         }
+         else{
+             q.pop();
+             answer++;
+             location--;
+         }
+     }   
+     else{
+      if(location==0) location=q.size()-1;
+      else location--;
+      int temp=q.front();
+         q.pop();
+         q.push(temp);
+     }
+    }
+    return answer;
+}
