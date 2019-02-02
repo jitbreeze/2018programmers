@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+vector<int> solution(int brown, int red) {
+    vector<int> answer;
+    int sum=brown+red;
+    int max=(int)sqrt(sum);
+    for(int i=3;i<=max;i++){
+        if(sum%i==0){
+            int garo=sum/i;
+            if((garo-2)*(i-2)==red){
+                answer.push_back(garo);
+                answer.push_back(i);
+                break;
+            }
+        }
+    }
+    return answer;
+}
